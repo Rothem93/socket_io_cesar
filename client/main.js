@@ -1,18 +1,30 @@
 'use strict' 
 
+//var socket = io.connect('http://10.21.0.54:6677', {'forceNew': true});
 var socket = io.connect('https://aquihaydragones.herokuapp.com/', {'forceNew': true});
-// 'http://10.21.0.54:6677'
-// 
 socket.on('messages', (data) => {
 	console.log(data)
 	render(data);
 });
 
+Date.prototype.yyyymmdd = function() {
+  var mm = this.getMonth() + 1; // getMonth() is zero-based
+  var dd = this.getDate();
+
+  return [this.getFullYear(),
+          (mm>9 ? '' : '0') + mm,
+          (dd>9 ? '' : '0') + dd
+         ].join('-');
+};
+
+var date = new Date();
+date.yyyymmdd();
+
 function render(data){
 	var html = data.map((message, index) => {
 		return(`
 			<div class="message">
-				<strong>${message.nickName}</strong> dice: 
+				<strong>${message.nickName} - <i>`+date.yyyymmdd() + `  `+ date.getHours()+`:`+ date.getMinutes()+`</i></strong> dice: 
 				<p>${message.text}</p>
 			</div>
 		`)
