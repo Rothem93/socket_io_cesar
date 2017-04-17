@@ -14,7 +14,7 @@ app.get('/test', (req, res)=> {
 
 var messages = [{
 	id: 1,
-	text: 'Bienvenido al chat privado de Socket.io y Nodejs de César M.',
+	text: 'Bienvenido al chat privado de Socket.io y Nodejs de César M. La persistencia de los mensajes es hasta que tire el servidor.',
 	nickName: 'ro-Bot-o'
 }]
 

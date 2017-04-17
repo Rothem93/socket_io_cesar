@@ -1,7 +1,8 @@
 'use strict' 
 
 var socket = io.connect('https://aquihaydragones.herokuapp.com/', {'forceNew': true});
-
+// 'http://10.21.0.54:6677'
+// 
 socket.on('messages', (data) => {
 	console.log(data)
 	render(data);
