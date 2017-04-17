@@ -12,7 +12,7 @@
 		<h1>Chat con Socket IO y NodeJS</h1>
 		<div id="messages"></div>
 		<form onsubmit="return addMessage(this);">
-			<input type="text" id="nickname" placeholder="Nick" />
+			<input type="text" id="nickname" placeholder="Nick" /><br/>
 			<textarea id="textoArea" placeholder="mensaje..." onkeydown="if (event.keyCode == 13) document.getElementById('enviar').click()"></textarea>
 			<input type="submit" id="enviar" value="Enviar">
 		</form>
