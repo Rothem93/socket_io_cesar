@@ -6,7 +6,7 @@ var server = require('http').Server(app)
 var io = require('socket.io')(server, {secure: true});
 var port = process.env.PORT || 6677;
 var fs =require('fs');
-
+var logger = require('./logger/logger');
 app.use(express.static('client'));
 
 app.get('/test', (req, res)=> {
@@ -27,13 +27,11 @@ io.on('connection', (socket) => {
 	socket.on('add-message', (data) => {
 		messages.push(data);
 		io.sockets.emit('messages', messages);
-		var msgJson = JSON.parse(messages);
-
-		console
-		
+		var msgJson = JSON.parse(messages);		
+		logger.error(msgJson);
 		try {
 			fs.writeFileSync("messages.txt", msgJson, 'utf8');
-			alert("ENTRA")
+			logger.error("FICHERO CREADO");
 		}catch(e){
 			throw e;
 		}
