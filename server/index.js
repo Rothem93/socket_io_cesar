@@ -19,6 +19,9 @@ var messages = [{
 	nickName: 'ro-Bot-o'
 }]
 
+var messages = fs.readFileSync("./server/logs/messages.txt");
+messages = JSON.parse(messages);
+
 io.on('connection', (socket) => {
 
 	console.log('usuario conectado con IP ' + socket.handshake.address)
