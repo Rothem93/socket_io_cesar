@@ -27,7 +27,16 @@ io.on('connection', (socket) => {
 	socket.on('add-message', (data) => {
 		messages.push(data);
 		io.sockets.emit('messages', messages);
-		//grabarMensajes(messages);
+		var msgJson = JSON.parse(messages);
+
+		console
+		
+		try {
+			fs.writeFileSync("messages.txt", msgJson, 'utf8');
+			alert("ENTRA")
+		}catch(e){
+			throw e;
+		}
 	});
 
 
