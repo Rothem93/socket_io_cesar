@@ -5,6 +5,7 @@ var app = express();
 var server = require('http').Server(app)
 var io = require('socket.io')(server, {secure: true});
 var port = process.env.PORT || 6677;
+var fs =require('fs');
 
 app.use(express.static('client'));
 
@@ -26,6 +27,7 @@ io.on('connection', (socket) => {
 	socket.on('add-message', (data) => {
 		messages.push(data);
 		io.sockets.emit('messages', messages);
+		grabarMensajes(messages);
 	});
 
 
@@ -35,5 +37,16 @@ server.listen(port, ()=>{
 	console.log(`API REST FAVORITOS arrancado en http://localhost:${port}`);
 });
 
+
+var grabarMensajes = function() {
+
+	var msgJson = JSON.parse(messages);
+	
+	try {
+		fs.writeFileSync("messages.txt", msgJson, 'utf8');
+	}catch(e){
+		throw e;
+	}
+}
 
 module.exports = app;
