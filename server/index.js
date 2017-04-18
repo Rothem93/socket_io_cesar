@@ -27,7 +27,7 @@ io.on('connection', (socket) => {
 	socket.on('add-message', (data) => {
 		messages.push(data);
 		io.sockets.emit('messages', messages);
-		grabarMensajes(messages);
+		//grabarMensajes(messages);
 	});
 
 
@@ -40,13 +40,15 @@ server.listen(port, ()=>{
 
 var grabarMensajes = function() {
 
-	var msgJson = JSON.parse(messages);
+	// var msgJson = JSON.parse(messages);
+
+	// console
 	
-	try {
-		fs.writeFileSync("messages.txt", msgJson, 'utf8');
-	}catch(e){
-		throw e;
-	}
+	// try {
+	// 	fs.writeFileSync("messages.txt", msgJson, 'utf8');
+	// }catch(e){
+	// 	throw e;
+	// }
 }
 
 module.exports = app;
