@@ -1,0 +1,1 @@
+[{"id":1,"text":"Bienvenido al chat privado de Socket.io y Nodejs de César M.","nickName":"ro-Bot-o"},{"nickName":"asddaasd","text":"asd"}]

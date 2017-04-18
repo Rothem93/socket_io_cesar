@@ -24,18 +24,18 @@ io.on('connection', (socket) => {
 	console.log('usuario conectado con IP ' + socket.handshake.address)
 	socket.emit('messages', messages);
 
-	socket.on('add-message', (data) => {
-		messages.push(data);
-		io.sockets.emit('messages', messages);
-		var msgJson = JSON.parse(messages);		
-		logger.error(msgJson);
+	socket.on('add-message', (data) => { 
+		messages.push(data); 
+		io.sockets.emit('messages', messages); 
+		var msgJson = JSON.stringify(messages);		
+		//logger.error(msgJson);
 		try {
-			fs.writeFileSync("messages.txt", msgJson, 'utf8');
-			logger.error("FICHERO CREADO");
+			fs.writeFileSync("./server/logs/messages.txt", msgJson, 'utf8');
+			//logger.error("FICHERO CREADO");
 		}catch(e){
 			throw e;
 		}
-	});
+	}); 
 
 
 });
@@ -43,19 +43,5 @@ io.on('connection', (socket) => {
 server.listen(port, ()=>{
 	console.log(`API REST FAVORITOS arrancado en http://localhost:${port}`);
 });
-
-
-var grabarMensajes = function() {
-
-	// var msgJson = JSON.parse(messages);
-
-	// console
-	
-	// try {
-	// 	fs.writeFileSync("messages.txt", msgJson, 'utf8');
-	// }catch(e){
-	// 	throw e;
-	// }
-}
 
 module.exports = app;
